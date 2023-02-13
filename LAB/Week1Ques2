@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+#define max 100
+int bin_search(int[],int,int,int);
+int main()
+{
+    int a[max];
+    int n,i,res,key;
+    cin>>n;
+    cin>>key;
+    for(i=0;i<n;i++)
+    cin>>a[i];
+    res=bin_search(a,0,n-1,key);
+    if(res)
+    cout<<"Number found"<<endl;
+    else
+    cout<<"Number not found"<<endl;
+}
+int bin_search(int a[],int l,int h,int key)
+{
+    int mid;
+    if(l==h)
+    {
+        if(a[l]==key)
+        return 1;
+        else
+        return 0;
+    }
+    else
+    {
+        mid=(l+h)/2;
+        if(a[mid]==key)
+        return 1;
+        if(key<a[mid])
+        return 1+bin_search(a,l,mid-1,key);
+        else
+        return 1+bin_search(a,mid+1,h,key);
+    }
+}
