@@ -1,1 +1,82 @@
+#include<iostream>
+using namespace std;
+#define max 100
+int c=0;
+void m_sort(int [],int [],int,int);
+void merge(int [],int [],int,int,int);
+int main()
+{
+    int t,i,j;
+    cout<<"enter no of test case comparisons: ";
+    cin>>t;
+    for(j=0;j<t;j++)
+    {
+       int a[max],n,t[max];
+       cout<<"Enter no of elements in an array: ";
+       cin>>n;
+       for(i=0;i<n;i++)
+       {
+           cin>>a[i];
+       }
+       m_sort(a,t,0,n-1);
+       cout<<"Sorted array is:"<<endl;
+       for(i=0;i<n;i++)
+       {
+           cout<<a[i]<<" ";
+       }
+       cout<<endl<<"comparisons = "<<c<<endl;
+       c=0;
+    }
+}
+void m_sort(int a[],int t[],int lb,int ub)
+{
+    int mid=0;
+    if(lb<ub)
+    {
+        mid=(lb+ub)/2;
+        m_sort(a,t,lb,mid);
+        m_sort(a,t,mid+1,ub);
+        merge(a,t,lb,mid,ub);
+    }
+}
+void merge(int a[],int t[],int lb,int mid, int ub)
+{
+    int i=0,j=ub,k=lb,le=mid;
+    while(lb<=le&&mid+1<=ub)
+    {
+        c++;
+        if(a[lb]<a[mid+1])
+        {
+            t[k]=a[lb];
+            lb++;
+            k++;
+        }
+        else
+        {
+            t[k]=a[mid+1];
+            mid++;
+            k++;
+        }
+    }
+    while(lb<=le)
+    {
+        t[k]=a[lb];
+        lb++;
+        k++;
+    }
+    while(mid+1<=ub)
+    {
+        t[k]=a[mid+1];
+        mid++;
+        k++;
+    }
+    for(i=0;i<=ub;i++)
+    {
+        a[i]=t[i];
+    }
+    
+}
+
+
+
 
