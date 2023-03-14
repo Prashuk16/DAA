@@ -1,29 +1,28 @@
- #include <iostream>
+#include <iostream>
 #include<cmath>
 using namespace std;
 int jump_search(int [],int,int);
 int main()
 {
     int n,key=0,i,t;
-    cout<<"enter no of test cases";
+    cout<<"Enter no of test cases: ";
     cin>>t;
     for(int j=0;j<t;j++)
     {
-    cout<<"enter total no. of elements in an array ";
+    cout<<"enter total no. of elements in an array: ";
     cin>>n;
     int a[n];
-    cout<<"enter elements in an array";
     for(i=0;i<n;i++)
     {
         cin>>a[i];
     }
-    cout<<"enter key which you want to search ";
+    cout<<"enter key which you want to search: ";
     cin>>key;
     int t=jump_search(a,key,n);
     if(t==-1)
-    cout<<"element not present in array";
+    cout<<"Not present"<<endl;
     else
-    cout<<"element present at position "<<t+1<<endl;
+    cout<<"Present "<<t+1<<endl;
     }
 }
 int jump_search(int a[],int key,int n)
@@ -43,3 +42,4 @@ int jump_search(int a[],int key,int n)
     }
     return -1;
 }
+
