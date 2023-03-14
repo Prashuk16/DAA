@@ -1,1 +1,52 @@
+#include <stdio.h>
+void sum(int a[],int n);
+int main()
+{
+    int n,t;
+    printf("Enter no. of test cases: ");
+    scanf("%d",&t);
+    for(int j=0;j<t;j++)
+    {
+    printf("Enter no. of elements in an array: ");
+    scanf("%d",&n);
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    sum(a,n);
+    }
+}
+void sum(int a[],int n)
+{
+    int i,j,k,s,f=0;;
+    for(i=0;i<n;i++)
+    {
+      for(j=0;j<n;j++)
+      {
+          if(i!=j)
+          {
+              s=a[i]+a[j];
+          }
+          for(k=0;k<n;k++)
+          {
+              if(s==a[k]&&k!=j)
+              {
+                  printf("%d,%d,%d \n",i+1,j+1,k+1);
+                  f=1;
+                  break;
+              }
+          }
+          if(f==1)
+          break;
+        
+        }
+        if(f==1)
+        break;
+    }
+    if(f==0)
+    printf("No sequence found.\n");
+}
+
+
 
