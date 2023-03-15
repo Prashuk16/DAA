@@ -6,7 +6,7 @@ void quick_sort(int [],int,int);
 int partition(int [],int,int);
 int main()
 {
-    int t,i,j;
+    int t=0,i,j;
     cout<<"Enter no of test case comparisons: ";
     cin>>t;
     for(j=0;j<t;j++)
