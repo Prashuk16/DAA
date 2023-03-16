@@ -1,1 +1,52 @@
+#include<iostream>
+using namespace std;
+void insertion(int a[],int n);
+int comp=0,shifts=0;
+int main()
+{
+    int t,n;
+    printf("Enter number of test cases: ");
+    scanf("%d",&t);
+    for(int j=0;j<t;j++)
+    {
+        printf("Enter the size of array: ");
+        scanf("%d",&n);
+        int a[n];
+        for(int i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+        insertion(a,n);
+        printf("Sorted array is:\n");
+        for(int i=0;i<n;i++)
+        {
+            printf("%d ",a[i]);
+        }
+       cout<<endl;
+       cout<<"comparisons = "<<comp<<endl;
+       cout<<"shifts = "<<shifts<<endl;
+       comp=0;
+       shifts=0;
+    }
+    
+}
+void insertion(int a[],int n)
+{
+    int i,j,temp;
+    for(int i=1;i<n;i++)
+    {
+        temp=a[i];
+        j=i-1;
+        comp++;
+        while(j>=0&&a[j]>temp)
+        {
+            shifts++;
+            a[j+1]=a[j];
+            j--;
+        }
+        a[j+1]=temp;
+        shifts++;
+    }
+}
+
 
