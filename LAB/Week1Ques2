@@ -1,34 +1,45 @@
-#include<stdio.h>
+#include <iostream>
+using namespace std;
+int binary_search(int [],int,int,int);
+int count=0;
 int main()
 {
-    int i,n,t,k,j;
-    printf("input total no of comparisons");
-    scanf("%d",&t);
-    for(i=0;i<t;i++)
+    int t,n,key;
+    cout<<"Enter no of test cases: ";
+    cin>>t;
+    for(int i=0;i<t;i++)
     {
-        int s=0,flag=0,count=0;
-        printf("enter total no of elements in an array");
-        scanf("%d",&n);
-        int a[n];
-        for(j=0;j<n;j++)
-        {
-            scanf("%d",&a[j]);
-        }
-        printf("enter searched element");
-        scanf("%d",&s);
-        for(k=0;k<n;k++)
-        {
-            count++;
-           if(a[k]==s)
-           {
-               flag=1;
-               printf("Present %d",k+1);
-               break;
-           }
-        }
-        if(flag==0)
-        printf("Not Present %d",s);
-        printf("\n");
-        printf("%d",count);
+       cout<<"Enter no of elements in an array: ";
+       cin>>n;
+       int a[n];
+       for(int i=0;i<n;i++)
+       cin>>a[i];
+       cout<<"Enter key: ";
+       cin>>key;
+       int f=binary_search(a,0,n-1,key);
+       if(f==-1)
+       cout<<"Not Present "<<count<<endl;
+       else
+       cout<<"Present "<<count<<endl;
+       
     }
+       return 0;
+}
+int binary_search(int a[],int l,int r,int key)
+{
+    if(l>r)
+    {
+        return -1;
+    }
+    int mid=(l+r)/2;
+    count++;
+    if(a[mid]==key)
+    {
+    return mid;
+    }
+    else if(key>a[mid]&&count++)
+    {
+      return binary_search(a,mid+1,r,key);
+    }
+    return binary_search(a,l,mid-1,key);
 }
