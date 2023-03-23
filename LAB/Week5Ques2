@@ -1,1 +1,41 @@
-
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int i,j,n,t,key=0,k;
+    cout<<"Enter no of test cases: ";
+    cin>>t;
+    for(k=0;k<t;k++)
+    {
+        cout<<"Enter total no. of elements in array: ";
+        cin>>n;
+        int a[n];
+        for(i=0;i<n;i++)
+        {
+            cin>>a[i];
+        }
+        cout<<"Enter key: ";
+        cin>>key;
+        sort(a,a+n);
+        j=n-1;
+        i=0;
+        int count=0;
+        while(i<=j)
+        {
+            if(a[i]+a[j]<key)
+            i++;
+            else if(a[i]+a[j]>key)
+            j--;
+            else
+            {
+               count=1;
+               cout<<a[i]<<" "<<a[j]<<endl;
+               break;
+            }
+        }
+        if(count==0)
+        cout<<"No Such Elements Exist"<<endl;
+    }
+    return 0;
+}
