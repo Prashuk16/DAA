@@ -1,1 +1,71 @@
-
+#include<bits/stdc++.h>
+using namespace std;
+int findp(int u, vector<int>&parent)
+{
+if(u== parent[u])
+return u;
+else
+{
+int res= findp(parent[u],parent);
+parent[u]=res;
+return res;
+}
+}
+void union1(int u,int v, vector<int>&parent)
+{
+int up= findp(u,parent);
+int vp= findp(v,parent);
+parent[up]=vp;
+}
+int isCycle(vector<int>adj[], int V)
+{
+vector<int>parent(V);
+for(int i=0;i<V;i++)
+{
+parent[i]=i;
+}
+vector<pair<int,int>>edges;
+for(int i=0;i<V;i++)
+{
+for(auto j:adj[i])
+{
+if(j>i)
+edges.push_back({i,j});
+}
+}
+for(int i=0;i<edges.size();i++)
+{
+int u=edges[i].first;
+int v=edges[i].second;
+if(findp(u,parent)== findp(v,parent))
+return 1;
+else
+{
+union1(u,v,parent);
+}
+}
+return 0;
+}
+int main()
+{
+int V,E;
+cout<<"Enter number of vertices ";
+cin>>V;
+cout<<"Enter number of edges ";
+cin>>E;
+vector<int>adj[V];
+cout<<"Enter graph edges ";
+for(int i=0;i<E;i++)
+{
+int u,v;
+cin>>u>>v;
+adj[u].push_back(v);
+adj[v].push_back(u);
+}
+// adjacency list is ready till now....
+int ans= isCycle(adj,V);
+if(ans==0)
+cout<<"no cycle ";
+else
+cout<<"yes cycle";
+}
